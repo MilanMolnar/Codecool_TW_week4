@@ -5,7 +5,7 @@ from Application import application
 from Company import company
 from Position import position
 from Student import student
-
+log.logger.info("Main module")
 def choose():
     log.logger.debug("main choosing menu")
     inputs = ui.get_inputs(["Please enter a number: "], "")

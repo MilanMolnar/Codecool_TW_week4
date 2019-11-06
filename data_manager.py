@@ -1,5 +1,5 @@
 import log
-
+log.logger.info("Data manager module")
 def get_table_from_file(filename):
     log.logger.debug("data manager getting table from csv file")
     '''

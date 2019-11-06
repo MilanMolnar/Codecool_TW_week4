@@ -4,9 +4,9 @@ import common
 import data_manager
 
 
-
+log.logger.info("Position module")
 def create_pos(table,file_name,main_list):
-
+    log.logger.debug("position creating position")
     def add_pos(table, res_table):
         log.logger.debug("common adding to table")
         inputs = []
@@ -14,13 +14,49 @@ def create_pos(table,file_name,main_list):
         for i in range(0, len(res_table)):
             inputs.append(res_table[i])
         table.append(inputs)
-        return table
+        file = data_manager.get_table_from_file("Company/company.csv")
+        if common.is_in_table(file, inputs[-1]) is False:
+            return table
+        else:
+            ui.print_error_message("Company ID does not exist!")
+            exit()
+
     table = add_pos(table, ui.get_inputs(main_list, "Please provide the following information:"))
 
-    file = data_manager.get_table_from_file("Company/company.csv")
-
-
     data_manager.write_table_to_file(file_name, table)
+
+
+def read_pos(table, ID):
+    log.logger.debug("position reading position + student ids already applied")
+    for i in range(len(table)):
+        if table[i][0] in ID:
+            ui.print_line(table[i])
+    # + students already applied are shown here
+    ui.print_line("Student IDs already applied:")
+    file = data_manager.get_table_from_file("Application/application.csv")
+    for i in range(len(file)):
+        if file[i][-1] in ID:
+            ui.print_line(file[i][-2])
+        elif file[i][-1] in ID:
+            ui.print_line("There are no students applied right now.")
+
+def read_positions(table):
+    counter=0
+    seat_list=[]
+    log.logger.debug("position reading positions + seats taken")
+    file = data_manager.get_table_from_file("Application/application.csv")
+
+    for sublist in table:
+        for sublist2 in file:
+            if sublist[0] == sublist2[-1]:
+                if sublist2[1] == "1":
+                    counter += 1
+                    ui.print_line(sublist[0]+" "+sublist[1]+" "+sublist[2]+" "+ sublist[3])
+    '''
+    az elso sublist idket berakom egy listába és onnan hasonlítok
+    
+    '''
+
 
 
 
@@ -43,12 +79,14 @@ def choose(menu):
     inputs = ui.get_inputs(["Please enter a number: "], "")
     option = inputs[0]
     main_list = ["Description: ", "Seats: ", "Company_ID: "]
+    get_id = ["ID: "]
     if option == "1":
         create_pos(table, file_name, main_list)
     elif option == "2":
-        pass
+        id_given = ui.get_inputs(get_id,"Please provide the following information:")
+        read_pos(table,id_given)
     elif option == "3":
-        pass
+        read_positions(table)
     elif option == "4":
         pass
     elif option == "0":
@@ -61,6 +99,6 @@ def choose(menu):
 
 def handle_menu():
     log.logger.debug("position handling menu")
-    options = ["Create position", "Read positions", "Update position", "Delete position"]
+    options = ["Create position", "Read position","Read positions", "Update position", "Delete position"]
 
     ui.print_menu("Position manager", options, "Back to main menu")
