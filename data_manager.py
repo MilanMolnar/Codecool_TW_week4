@@ -1,6 +1,6 @@
 import log
 
-def get_table_from_csv(filename):
+def get_table_from_file(filename):
     log.logger.debug("data manager getting table from csv file")
     '''
     :param filename: Reads csv file
@@ -11,7 +11,7 @@ def get_table_from_csv(filename):
     table =[element.replace("\n","").split(";") for element in lines]
     return table
 
-def write_table_to_csv(filename,table):
+def write_table_to_file(filename,table):
     log.logger.debug("data manager write to csv")
     '''
     :param filename: write list of lists into a csv file

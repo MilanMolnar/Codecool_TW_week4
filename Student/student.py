@@ -1,7 +1,9 @@
 import ui
 import log
+import data_manager
 
 def start_module():
+    table = data_manager.get_table_from_file("student.csv")
     log.logger.debug("student staring module")
     menu = True
     while menu:
@@ -42,3 +44,5 @@ def handle_menu():
     options = ["Create student", "Read student", "Read students", "Update student","Change status", "Delete student"]
 
     ui.print_menu("Company manager", options, "Back to main menu")
+
+
