@@ -74,7 +74,6 @@ def print_menu(title, list_options, exit_message):
 def get_inputs(list_labels, title):
     log.logger.debug("ui getting input")
     inputs = []
-
     print(title)
     for input_num in range(len(list_labels)):
         inputs.append(input(list_labels[input_num]))

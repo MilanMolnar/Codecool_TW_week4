@@ -54,9 +54,12 @@ def choose(menu):
                       ui.get_inputs(["ID: "], "Please provide the ID to identify the student:"))
         data_manager.write_table_to_file(file_name, table)
     elif option == "6":
-        table = common.remove(data_manager.get_table_from_file(file_name),
-                       ui.get_inputs(["ID: "], "Please provide the following information:"))
-        data_manager.write_table_to_file(file_name, table)
+        ID = ui.get_inputs(["ID: "], "Please provide the following information:")
+        if common.is_in_table(data_manager.get_table_from_file("Application/application.csv"), ID):
+            table = common.remove(data_manager.get_table_from_file(file_name),ID)
+            data_manager.write_table_to_file(file_name, table)
+        else:
+            pass
     elif option == "0":
         return False
     else:

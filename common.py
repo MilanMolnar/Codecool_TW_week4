@@ -36,12 +36,12 @@ def generate_random(table):
             continue
     return generated
 
-def add(table, res_table):
+def add(table, input_list):
     log.logger.debug("common adding to table")
     list = []
     list.append(generate_random(table))
-    for i in range(1, len(res_table)):
-        list.append(res_table[i])
+    for i in range(1, len(input_list)):
+        list.append(input_list[i])
     table.append(list)
     return table
 
@@ -78,3 +78,10 @@ def sorting(list):
                 list[obj + 1] = temp
                 sorted = False
     return list
+
+def is_in_table(table, ID): #returns true/false
+    for line in table:
+        for item in line:
+            if item in ID:
+                return False
+    return True
