@@ -1,6 +1,9 @@
 import ui
 import log
 
+
+
+
 def start_module():
     log.logger.debug("app starting module")
     menu = True

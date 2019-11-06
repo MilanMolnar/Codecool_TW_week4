@@ -83,3 +83,6 @@ def get_inputs(list_labels, title):
 def print_error_message(message):
     log.logger.debug("ui error message written")
     print("ERROR:", message)
+
+def print_line(line):
+    print(line)

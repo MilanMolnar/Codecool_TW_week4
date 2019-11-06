@@ -1,5 +1,30 @@
 import ui
 import log
+import common
+import data_manager
+
+
+
+def create_pos(table,file_name,main_list):
+
+    def add_pos(table, res_table):
+        log.logger.debug("common adding to table")
+        inputs = []
+        inputs.append(common.generate_random(table))
+        for i in range(0, len(res_table)):
+            inputs.append(res_table[i])
+        table.append(inputs)
+        return table
+    table = add_pos(table, ui.get_inputs(main_list, "Please provide the following information:"))
+
+    file = data_manager.get_table_from_file("Company/company.csv")
+
+
+    data_manager.write_table_to_file(file_name, table)
+
+
+
+
 
 def start_module():
     log.logger.debug("position starting module")
@@ -14,11 +39,12 @@ def start_module():
 def choose(menu):
     log.logger.debug("position choosing option")
     file_name = "Position/position.csv"
+    table = data_manager.get_table_from_file(file_name)
     inputs = ui.get_inputs(["Please enter a number: "], "")
     option = inputs[0]
-    main_list = [""]
+    main_list = ["Description: ", "Seats: ", "Company_ID: "]
     if option == "1":
-        pass
+        create_pos(table, file_name, main_list)
     elif option == "2":
         pass
     elif option == "3":
