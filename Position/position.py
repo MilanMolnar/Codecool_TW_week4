@@ -41,16 +41,33 @@ def read_pos(table, ID):
             ui.print_line("There are no students applied right now.")
 
 def read_positions(table):
+    '''
+    
+    We print out all the positions, then we print out the position IDs, are in the application csv,
+    which means somebody applied to that position.
+
+    We print out the IDs that are not even in the application csv that means nobody applied for that position.
+
+    If the position got applies and the company accepted them(1),
+     we print out how many seats are taken in that position.
+
+    If the position got applies but the company said no to them(0),
+    we just print out "all seats are available" just like if it is not in the application csv.
+
+    '''
+
 
     seat_list=[]
     seat_list_count=[]
     log.logger.debug("position reading positions + seats taken")
     file = data_manager.get_table_from_file("Application/application.csv")
 
+
     ui.print_line("Existing positions:\n /ID,Description,Seats,Company ID/\n")
     for sublist in table:
         ui.print_line(sublist)
     ui.print_line("\n")
+
 
     ui.print_line("Seats for positions:")
     for sublist in table:
@@ -61,6 +78,14 @@ def read_positions(table):
                 elif sublist2[1] =="1":
                     seat_list.append(sublist[0])
 
+
+    table_ids = []
+    for i in range(len(file)):
+        table_ids.append(file[i][-1])
+
+    for i in range(len(table)):
+        if table[i][0] not in table_ids:
+            ui.print_line("ID:"+table[i][0]+" "+"All seats are available")
 
 
     duplicated_id=[]
@@ -84,8 +109,7 @@ def read_positions(table):
     for word in duplicated_id:
         ui.print_line("ID:" + word[0:word.index("+")] + " " + word[word.index("+")+1:]+" Seats are taken.")
 
-
-
+    ui.print_line("\n")
 
 
 
