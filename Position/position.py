@@ -41,21 +41,48 @@ def read_pos(table, ID):
             ui.print_line("There are no students applied right now.")
 
 def read_positions(table):
-    counter=0
+
     seat_list=[]
+    seat_list_count=[]
     log.logger.debug("position reading positions + seats taken")
     file = data_manager.get_table_from_file("Application/application.csv")
 
+    ui.print_line("Existing positions:\n /ID,Description,Seats,Company ID/\n")
+    for sublist in table:
+        ui.print_line(sublist)
+    ui.print_line("\n")
+
+    ui.print_line("Seats for positions:")
     for sublist in table:
         for sublist2 in file:
             if sublist[0] == sublist2[-1]:
-                if sublist2[1] == "1":
-                    counter += 1
-                    ui.print_line(sublist[0]+" "+sublist[1]+" "+sublist[2]+" "+ sublist[3])
-    '''
-    az elso sublist idket berakom egy listába és onnan hasonlítok
-    
-    '''
+                if sublist2[1] == "0":
+                    ui.print_line("ID:"+sublist[0]+" "+"All seats are available")
+                elif sublist2[1] =="1":
+                    seat_list.append(sublist[0])
+
+
+
+    duplicated_id=[]
+    one_id=[]
+    for i in range(len(seat_list)):
+        seat_list_count.append(seat_list.count(seat_list[i]))
+
+    for i in range(len(seat_list)):
+        if seat_list.count(seat_list[i]) > 1:
+            duplicated_id.append(str(seat_list[i])+"+"+str(seat_list.count(seat_list[i])))
+        elif seat_list.count(seat_list[i]) == 1:
+            one_id.append(str(seat_list[i])+"+"+str(seat_list.count(seat_list[i])))
+
+    for word in one_id:
+        ui.print_line("ID:" + word[0:word.index("+")] + " " + word[word.index("+")+1:]+" Seat is taken.")
+
+    duplicated_id = list(dict.fromkeys(duplicated_id))
+    duplicated_id = list(dict.fromkeys(duplicated_id))
+
+
+    for word in duplicated_id:
+        ui.print_line("ID:" + word[0:word.index("+")] + " " + word[word.index("+")+1:]+" Seats are taken.")
 
 
 
