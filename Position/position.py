@@ -162,7 +162,7 @@ def choose(menu):
     elif option == "4":
         id_given = ui.get_inputs(get_id,"Please provide the following informations: ")
         update_given = ui.get_inputs(description,"")
-        update_desc(table,id_given,update_given)
+        update_desc(table,id_given,update_given[0])
         data_manager.write_table_to_file(file_name,table)
     elif option == "5":
         id_remove = ui.get_inputs(get_id,"Please provide the following information: ")
