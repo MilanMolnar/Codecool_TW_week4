@@ -4,6 +4,15 @@ import data_manager
 
 log.logger.info("Application module")
 
+
+
+def create_app():
+    #your code here Milán
+    pass
+
+
+
+
 def update_app(table, id_, accepted):
     log.logger.debug("application update accepted")
     for list in range(len(table)):
