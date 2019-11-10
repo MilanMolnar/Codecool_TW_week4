@@ -8,7 +8,7 @@ log.logger.info("Position module")
 def create_pos(table,file_name,main_list):
     log.logger.debug("position creating position")
     def add_pos(table, res_table):
-        log.logger.debug("common adding to table")
+        
         inputs = []
         inputs.append(common.generate_random(table))
         for i in range(0, len(res_table)):
