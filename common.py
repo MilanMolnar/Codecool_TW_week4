@@ -1,7 +1,11 @@
 import ui
 import random
 import log
+
+
 log.logger.info("Common module")
+
+
 def generate_random(table):
     log.logger.debug("common generating random number")
     generated = ''

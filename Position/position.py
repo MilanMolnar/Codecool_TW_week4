@@ -42,7 +42,7 @@ def read_pos(table, ID):
 
 def read_positions(table):
     '''
-    
+
     We print out all the positions, then we print out the position IDs, are in the application csv,
     which means somebody applied to that position.
 
@@ -113,6 +113,26 @@ def read_positions(table):
 
 
 
+def update_desc(table, id_, new_desc):
+    log.logger.debug("position update description")
+    for list in range(len(table)):
+        for item in table[list]:
+            if item in id_:
+                table[list][1] = new_desc
+    ui.print_line("ID successfully updated!")
+    return table
+
+
+def remove_desc(table, id_):
+    log.logger.debug("common remove table")
+    for list in table:
+        for item in list:
+            if item in id_:
+                table.remove(list)
+    ui.print_line("ID successfully deleted!")
+    return table
+
+
 def start_module():
     log.logger.debug("position starting module")
     menu = True
@@ -130,6 +150,7 @@ def choose(menu):
     inputs = ui.get_inputs(["Please enter a number: "], "")
     option = inputs[0]
     main_list = ["Description: ", "Seats: ", "Company_ID: "]
+    description = ["Description: "]
     get_id = ["ID: "]
     if option == "1":
         create_pos(table, file_name, main_list)
@@ -139,7 +160,14 @@ def choose(menu):
     elif option == "3":
         read_positions(table)
     elif option == "4":
-        pass
+        id_given = ui.get_inputs(get_id,"Please provide the following informations: ")
+        update_given = ui.get_inputs(description,"")
+        update_desc(table,id_given,update_given)
+        data_manager.write_table_to_file(file_name,table)
+    elif option == "5":
+        id_remove = ui.get_inputs(get_id,"Please provide the following information: ")
+        remove_desc(table,id_remove)
+        data_manager.write_table_to_file(file_name,table)
     elif option == "0":
         return False
 
