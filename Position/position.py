@@ -124,7 +124,7 @@ def update_desc(table, id_, new_desc):
 
 
 def remove_desc(table, id_):
-    log.logger.debug("common remove table")
+    log.logger.debug("position remove table")
     for list in table:
         for item in list:
             if item in id_:
