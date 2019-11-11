@@ -77,11 +77,11 @@ def choose(menu):
     table = data_manager.get_table_from_file(file_name)
     inputs = ui.get_inputs(["Please enter a number: "], "")
     option = inputs[0]
-    main_list = [""]
+    main_list = ["Accepted_field(yes[1] or no[0]): ","StudentID: ","PositionID: "]
     accepted =["Accepted? Yes[1] - No[0]: "]
     get_id = ["ID: "]
     if option == "1":
-        pass
+        create_app(table,file_name,main_list)
     elif option == "2":
         id_given = ui.get_inputs(get_id, "Please provide the following informations: ")
         accepted_given = ui.get_inputs(accepted, "")
