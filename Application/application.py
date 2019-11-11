@@ -1,12 +1,13 @@
 import ui
 import log
 import data_manager
+import common
 
 log.logger.info("Application module")
 
 
 
-def create_app():
+def create_app(table,file_name,main_list):
     #kell egy input(new_line_app), ami bekéri a következőket: "app ID", "Acepted field(0/1)", "Student ID", "PosID"
     #uj lista (ID_checker) tartalma: "PosID", "StudentID"
     #ID_chackerrel végig kell iterálni az application és student.csv-n ID_chacker 0 vagy 1 eleme /
@@ -16,6 +17,27 @@ def create_app():
     #file referancing pos.csv, table ref student.csv
     pass
 
+
+    log.logger.debug("application creating application")
+
+    def add_app(table, res_table):
+
+        inputs = []
+        inputs.append(common.generate_random(table))
+        for i in range(0, len(res_table)):
+            inputs.append(res_table[i])
+        table.append(inputs)
+        file1 = data_manager.get_table_from_file("Position/position.csv")
+        file2 = data_manager.get_table_from_file("Student/student.csv")
+        if common.is_in_table(file1, inputs[-1]) is False and common.is_in_table(file2, inputs[-2]) is False:
+            return table
+        else:
+            ui.print_error_message("Student ID or Position ID do not exist!")
+            exit()
+
+    table = add_app(table, ui.get_inputs(main_list, "Please provide the following information:"))
+
+    data_manager.write_table_to_file(file_name, table)
 
 
 
