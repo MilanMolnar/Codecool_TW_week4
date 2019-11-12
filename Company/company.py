@@ -18,6 +18,21 @@ def read_company(table, ID):
     for i in range(len(table)):
         if table[i][0] in ID:
             ui.print_line(table[i])
+            
+def remove_company(table, id_):
+    log.logger.debug("company remove comp")
+
+    file = data_manager.get_table_from_file("Position/position.csv")
+    for sublist in file:
+        if sublist[-1] == id_[0]:
+            raise ValueError('ID can not be deleted!')
+
+    for list in table:
+        for item in list:
+            if item in id_:
+                table.remove(list)
+    ui.print_line("ID successfully deleted!")
+    return table
 
 
 def choose(menu):
@@ -44,12 +59,11 @@ def choose(menu):
                                             "Please provide the following information to complete the update"))
         data_manager.write_table_to_file(file_name, table)
     elif option == "5":
-        ID = ui.get_inputs(["ID: "], "Please provide the following information:")
-        if common.is_in_table(data_manager.get_table_from_file("Position/position.csv"), ID):
-            table = common.remove(data_manager.get_table_from_file(file_name), ID)
-            data_manager.write_table_to_file(file_name, table)
-        else:
-            pass
+        get_id = ["ID: "]
+        table = data_manager.get_table_from_file(file_name)
+        id_remove = ui.get_inputs(get_id, "Please provide the following information: ")
+        remove_company(table, id_remove)
+        data_manager.write_table_to_file(file_name, table)
     elif option == "0":
         return False
     else:
