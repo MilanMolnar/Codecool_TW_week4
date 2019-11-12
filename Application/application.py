@@ -15,7 +15,7 @@ def create_app(table,file_name,main_list):
     #skeleton: if table[i][0] == ID_chacker[0] or table[i][0] == ID_chacker[1]
     #/if file[i][0] == ID_chacker[0] or file[i][0] == ID_chacker[1]
     #file referancing pos.csv, table ref student.csv
-    pass
+    
 
 
     log.logger.debug("application creating application")
@@ -38,6 +38,7 @@ def create_app(table,file_name,main_list):
     table = add_app(table, ui.get_inputs(main_list, "Please provide the following information:"))
 
     data_manager.write_table_to_file(file_name, table)
+
 
 
 
