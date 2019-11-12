@@ -15,9 +15,16 @@ def start_module():
 
 def read_company(table, ID):
     log.logger.debug("company read table")
+
+    file_pos = data_manager.get_table_from_file("Position/position.csv")
+
     for i in range(len(table)):
         if table[i][0] in ID:
-            ui.print_line(table[i])
+            ui.print_line("Company: " + str(table[i]))
+
+    for i in range(len(file_pos)):
+        if file_pos[i][3] == ID[0]:
+            ui.print_line("Positions: " + str(file_pos[i]))
             
 def remove_company(table, id_):
     log.logger.debug("company remove comp")
@@ -48,8 +55,10 @@ def choose(menu):
                            ui.get_inputs(main_list, "Please provide the following information:"))
         data_manager.write_table_to_file(file_name, table)
     elif option == "2":
-        read_company(data_manager.get_table_from_file(file_name),
-                     ui.get_inputs(["ID: "], "Please provide the ID to identify the company:"))
+        table = data_manager.get_table_from_file(file_name)
+        get_id = ["ID: "]
+        id_given = ui.get_inputs(get_id,"Please provide the following information:")
+        read_company(table, id_given)
     elif option == "3":
         common.show_table(label, data_manager.get_table_from_file(file_name))
     elif option == "4":
