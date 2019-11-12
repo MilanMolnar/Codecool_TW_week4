@@ -16,10 +16,9 @@ def create_pos(table,file_name,main_list):
         for i in range(0, len(res_table)):
             inputs.append(res_table[i])
         table.append(inputs)
-     
+
         if int(inputs[2]) < 1:
-            ui.print_line("Seat must be greater than 0!")
-            exit()
+            raise ValueError
         file = data_manager.get_table_from_file("Company/company.csv")
         if common.is_in_table(file, inputs[-1]) is False:
             return table
@@ -168,7 +167,11 @@ def choose(menu):
     description = ["Description: "]
     get_id = ["ID: "]
     if option == "1":
-        create_pos(table, file_name, main_list)
+        try:
+            create_pos(table, file_name, main_list)
+        except ValueError:
+            ui.print_line("Seat must be greater than 0!")
+            start_module()
     elif option == "2":
         id_given = ui.get_inputs(get_id,"Please provide the following information:")
         read_pos(table,id_given)
