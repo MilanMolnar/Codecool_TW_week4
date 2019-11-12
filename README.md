@@ -1,5 +1,6 @@
-Job Hunter project.
-(5th Teamwork week in Codecool)
+<h1>Job Hunter project</h1>
+
+<p>(5th Teamwork week in Codecool)</p>
 
 
 The main program is "main.py". 
