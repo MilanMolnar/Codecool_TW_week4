@@ -2,6 +2,8 @@ import ui
 import log
 import common
 import data_manager
+import main
+
 
 
 log.logger.info("Position module")
@@ -14,12 +16,20 @@ def create_pos(table,file_name,main_list):
         for i in range(0, len(res_table)):
             inputs.append(res_table[i])
         table.append(inputs)
+        print(inputs)
+
+
+
+        if int(inputs[2]) < 1:
+            ui.print_line("Seat must be greater than 0!")
+            exit()
         file = data_manager.get_table_from_file("Company/company.csv")
         if common.is_in_table(file, inputs[-1]) is False:
             return table
         else:
             ui.print_error_message("Company ID does not exist!")
-            exit()
+
+
 
     table = add_pos(table, ui.get_inputs(main_list, "Please provide the following information:"))
 
@@ -130,6 +140,7 @@ def remove_desc(table, id_):
     for sublist in file:
         if sublist[-1] == id_[0]:
             ui.print_line('ID can not be deleted!')
+            exit()
 
     for list in table:
         for item in list:
