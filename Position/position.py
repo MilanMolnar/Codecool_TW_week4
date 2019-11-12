@@ -16,10 +16,7 @@ def create_pos(table,file_name,main_list):
         for i in range(0, len(res_table)):
             inputs.append(res_table[i])
         table.append(inputs)
-        print(inputs)
-
-
-
+     
         if int(inputs[2]) < 1:
             ui.print_line("Seat must be greater than 0!")
             exit()
