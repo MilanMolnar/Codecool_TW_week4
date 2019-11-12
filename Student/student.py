@@ -21,6 +21,21 @@ def change_status(table, ID_input):
                 table[i][-1] = '1'
     return table
 
+def remove_student(table, id_):
+    log.logger.debug("student remove student")
+
+    file = data_manager.get_table_from_file("Application/application.csv")
+    for sublist in file:
+        if sublist[2] == id_[0]:
+            raise ValueError('ID can not be deleted!')
+
+    for list in table:
+        for item in list:
+            if item in id_:
+                table.remove(list)
+    ui.print_line("ID successfully deleted!")
+    return table
+
 def start_module():
     log.logger.debug("student starting module")
     table = data_manager.get_table_from_file("student.csv")
@@ -59,12 +74,11 @@ def choose(menu):
                       ui.get_inputs(["ID: "], "Please provide the ID to identify the student:"))
         data_manager.write_table_to_file(file_name, table)
     elif option == "6":
-        ID = ui.get_inputs(["ID: "], "Please provide the following information:")
-        if common.is_in_table(data_manager.get_table_from_file("Application/application.csv"), ID):
-            table = common.remove(data_manager.get_table_from_file(file_name),ID)
-            data_manager.write_table_to_file(file_name, table)
-        else:
-            pass
+        get_id = ["ID: "]
+        table = data_manager.get_table_from_file(file_name)
+        id_remove = ui.get_inputs(get_id, "Please provide the following information: ")
+        remove_student(table, id_remove)
+        data_manager.write_table_to_file(file_name, table)
     elif option == "0":
         return False
     else:
