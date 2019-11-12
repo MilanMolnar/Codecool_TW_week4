@@ -21,6 +21,19 @@ def change_status(table, ID_input):
                 table[i][-1] = '1'
     return table
 
+def read_student(table, ID):
+    log.logger.debug("student read table")
+
+    file_app = data_manager.get_table_from_file("Application/application.csv")
+
+    for i in range(len(table)):
+        if table[i][0] in ID:
+            ui.print_line("Student: " + str(table[i]))
+
+    for i in range(len(file_app)):
+        if file_app[i][2] == ID[0]:
+            ui.print_line("Application: " + str(file_app[i]))
+
 def remove_student(table, id_):
     log.logger.debug("student remove student")
 
@@ -60,8 +73,10 @@ def choose(menu):
                     ui.get_inputs(main_list, "Please provide the following information:"))
         data_manager.write_table_to_file(file_name, table)
     elif option == "2":
-        read_student(data_manager.get_table_from_file(file_name),
-                      ui.get_inputs(["ID: "], "Please provide the ID to identify the student:"))
+        table = data_manager.get_table_from_file(file_name)
+        get_id = ["ID: "]
+        id_given = ui.get_inputs(get_id, "Please provide the following information:")
+        read_student(table, id_given)
     elif option == "3":
         common.show_table(label, data_manager.get_table_from_file(file_name))
     elif option == "4":
