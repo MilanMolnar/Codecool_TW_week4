@@ -34,6 +34,7 @@ def create_app(table,file_name,main_list):
 
 def update_app(table, id_, accepted):
     log.logger.debug("application update accepted")
+    
     for list in range(len(table)):
         for item in table[list]:
             if item in id_:
