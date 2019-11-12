@@ -1,6 +1,6 @@
 <h1>Job Hunter project</h1>
 
-<a>(5th Teamwork week in Codecool)</a>
+<i>(5th Teamwork week in Codecool)</i>
 
 
 The main program is "main.py". 
