@@ -127,8 +127,9 @@ def remove_desc(table, id_):
     log.logger.debug("position remove table")
 
     file = data_manager.get_table_from_file("Application/application.csv")
-    if id_ in file:
-        raise ValueError('ID can not be deleted!')
+    for sublist in file:
+        if sublist[-1] == id_[0]:
+            raise ValueError('ID can not be deleted!')
 
     for list in table:
         for item in list:
