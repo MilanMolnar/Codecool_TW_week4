@@ -22,8 +22,7 @@ def create_app(table,file_name,main_list):
         if common.is_in_table(file1, inputs[-1]) is False and common.is_in_table(file2, inputs[-2]) is False:
             return table
         else:
-            ui.print_error_message("Student ID or Position ID do not exist!")
-            exit()
+            raise ValueError
 
     table = add_app(table, ui.get_inputs(main_list, "Please provide the following information:"))
 
@@ -34,7 +33,6 @@ def create_app(table,file_name,main_list):
 
 def update_app(table, id_, accepted):
     log.logger.debug("application update accepted")
-    
     for list in range(len(table)):
         for item in table[list]:
             if item in id_:
@@ -73,7 +71,11 @@ def choose(menu):
     accepted =["Accepted? Yes[1] - No[0]: "]
     get_id = ["ID: "]
     if option == "1":
-        create_app(table,file_name,main_list)
+        try:
+            create_app(table,file_name,main_list)
+        except ValueError:
+            ui.print_error_message("Student ID or Position ID do not exist!")
+            start_module()
     elif option == "2":
         id_given = ui.get_inputs(get_id, "Please provide the following informations: ")
         accepted_given = ui.get_inputs(accepted, "")
