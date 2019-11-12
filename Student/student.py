@@ -51,7 +51,7 @@ def remove_student(table, id_):
 
 def start_module():
     log.logger.debug("student starting module")
-    table = data_manager.get_table_from_file("student.csv")
+    table = data_manager.get_table_from_file("Student/student.csv")
     log.logger.debug("student staring module")
     menu = True
     while menu:
