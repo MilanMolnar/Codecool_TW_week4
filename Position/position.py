@@ -5,7 +5,6 @@ import data_manager
 import main
 
 
-
 log.logger.info("Position module")
 def create_pos(table,file_name,main_list):
     log.logger.debug("position creating position")
