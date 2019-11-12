@@ -22,9 +22,17 @@ def read_company(table, ID):
         if table[i][0] in ID:
             ui.print_line("Company: " + str(table[i]))
 
+    result = []
     for i in range(len(file_pos)):
         if file_pos[i][3] == ID[0]:
-            ui.print_line("Positions: " + str(file_pos[i]))
+            result.append(file_pos[i])
+
+    if len(result) == 0:
+        ui.print_line("There is no position for that company.")
+    elif len(result) == 1:
+        ui.print_line("Position: "+ str(result[0]))
+    else:
+        ui.print_line("Positions: "+ str(result))
             
 def remove_company(table, id_):
     log.logger.debug("company remove comp")
@@ -33,6 +41,7 @@ def remove_company(table, id_):
     for sublist in file:
         if sublist[-1] == id_[0]:
             ui.print_line('ID can not be deleted!')
+            exit()
 
     for list in table:
         for item in list:
