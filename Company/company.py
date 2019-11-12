@@ -41,7 +41,7 @@ def remove_company(table, id_):
     for sublist in file:
         if sublist[-1] == id_[0]:
             ui.print_line('ID can not be deleted!')
-            exit()
+            raise ValueError
 
     for list in table:
         for item in list:
@@ -77,11 +77,14 @@ def choose(menu):
                                             "Please provide the following information to complete the update"))
         data_manager.write_table_to_file(file_name, table)
     elif option == "5":
-        get_id = ["ID: "]
-        table = data_manager.get_table_from_file(file_name)
-        id_remove = ui.get_inputs(get_id, "Please provide the following information: ")
-        remove_company(table, id_remove)
-        data_manager.write_table_to_file(file_name, table)
+        try:
+            get_id = ["ID: "]
+            table = data_manager.get_table_from_file(file_name)
+            id_remove = ui.get_inputs(get_id, "Please provide the following information: ")
+            remove_company(table, id_remove)
+            data_manager.write_table_to_file(file_name, table)
+        except ValueError:
+            start_module()
     elif option == "0":
         return False
     else:
