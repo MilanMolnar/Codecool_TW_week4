@@ -90,7 +90,5 @@ def handle_menu():
     log.logger.debug("student handling menu")
     options = ["Create student", "Read student", "Read students", "Update student","Change status", "Delete student"]
 
-    ui.print_menu("Company manager", options, "Back to main menu")
-
 
     ui.print_menu("Student manager", options, "Back to main menu")
