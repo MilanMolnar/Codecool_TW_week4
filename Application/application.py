@@ -8,16 +8,6 @@ log.logger.info("Application module")
 
 
 def create_app(table,file_name,main_list):
-    #kell egy input(new_line_app), ami bekéri a következőket: "app ID", "Acepted field(0/1)", "Student ID", "PosID"
-    #uj lista (ID_checker) tartalma: "PosID", "StudentID"
-    #ID_chackerrel végig kell iterálni az application és student.csv-n ID_chacker 0 vagy 1 eleme /
-    #megegyezik-e a csv-k 0-dik elemével. ha igen akkor adja hozzá: new_line_app-ot
-    #skeleton: if table[i][0] == ID_chacker[0] or table[i][0] == ID_chacker[1]
-    #/if file[i][0] == ID_chacker[0] or file[i][0] == ID_chacker[1]
-    #file referancing pos.csv, table ref student.csv
-    
-
-
     log.logger.debug("application creating application")
 
     def add_app(table, res_table):
