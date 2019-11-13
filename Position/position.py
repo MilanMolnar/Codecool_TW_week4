@@ -6,11 +6,9 @@ import main
 
 
 
-log.logger.info("Position module")
 def create_pos(table,file_name,main_list):
-    log.logger.debug("position creating position")
+    log.logger.debug("Starting create_pos function from position.py")
     def add_pos(table, res_table):
-
         inputs = []
         inputs.append(common.generate_random(table))
         for i in range(0, len(res_table)):
@@ -32,8 +30,9 @@ def create_pos(table,file_name,main_list):
     data_manager.write_table_to_file(file_name, table)
 
 
+    
 def read_pos(table, ID):
-    log.logger.debug("position reading position + student ids already applied")
+    log.logger.debug("Starting read_pos function from position.py")
     for i in range(len(table)):
         if table[i][0] in ID:
             ui.print_line(table[i])
@@ -46,9 +45,10 @@ def read_pos(table, ID):
         elif file[i][-1] in ID:
             ui.print_line("There are no students applied right now.")
 
+            
+            
 def read_positions(table):
     '''
-
     We print out all the positions, then we print out the position IDs, are in the application csv,
     which means somebody applied to that position.
 
@@ -62,10 +62,9 @@ def read_positions(table):
 
     '''
 
-
     seat_list=[]
     seat_list_count=[]
-    log.logger.debug("position reading positions + seats taken")
+    log.logger.debug("Starting read_positions function from position.py")
     file = data_manager.get_table_from_file("Application/application.csv")
 
 
@@ -120,7 +119,7 @@ def read_positions(table):
 
 
 def update_desc(table, id_, new_desc):
-    log.logger.debug("position update description")
+    log.logger.debug("Starting update_desc function from position.py")
     for list in range(len(table)):
         for item in table[list]:
             if item in id_:
@@ -129,9 +128,9 @@ def update_desc(table, id_, new_desc):
     return table
 
 
-def remove_desc(table, id_):
-    log.logger.debug("position remove table")
 
+def remove_desc(table, id_):
+    log.logger.debug("Starting remove_desc function from position.py")
     file = data_manager.get_table_from_file("Application/application.csv")
     for sublist in file:
         if sublist[-1] == id_[0]:
@@ -148,7 +147,7 @@ def remove_desc(table, id_):
 
 
 def start_module():
-    log.logger.debug("position starting module")
+    log.logger.debug("Starting start_module function from position.py")
     menu = True
     while menu:
         handle_menu()
@@ -157,8 +156,10 @@ def start_module():
         except KeyError as err:
             ui.print_error_message(str(err))
 
+            
+            
 def choose(menu):
-    log.logger.debug("position choosing option")
+    log.logger.debug("Starting choose function from position.py")
     file_name = "Position/position.csv"
     table = data_manager.get_table_from_file(file_name)
     inputs = ui.get_inputs(["Please enter a number: "], "")
@@ -194,8 +195,8 @@ def choose(menu):
     return True
 
 
-def handle_menu():
-    log.logger.debug("position handling menu")
-    options = ["Create position", "Read position","Read positions", "Update position", "Delete position"]
 
+def handle_menu():
+    log.logger.debug("Starting handle_menu function from position.py")
+    options = ["Create position", "Read position","Read positions", "Update position", "Delete position"]
     ui.print_menu("Position manager", options, "Back to main menu")
