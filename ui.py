@@ -1,11 +1,10 @@
 import log
 
 
-log.logger.info("UI module")
 
 
 def print_table(table, title_list):
-    log.logger.debug("ui printing table")
+    log.logger.debug("Starting print_table function from ui.py")
     list_of_column_len = []
     list_of_title_leng = []
     list_of_width = []
@@ -66,18 +65,18 @@ def print_table(table, title_list):
     print()
 
 def print_result(result, label):
-    log.logger.debug("ui printing result")
+    log.logger.debug("Starting print_result function from ui.py")
     print(label, result)
 
 def print_menu(title, list_options, exit_message):
-    log.logger.debug("ui printing menu")
+    log.logger.debug("Starting print_menu function from ui.py")
     print(title)
     for option in range(len(list_options)):
         print("   (" + str(option + 1) + ")", list_options[option] )
     print("   (0) " + exit_message)
 
 def get_inputs(list_labels, title):
-    log.logger.debug("ui getting input")
+    log.logger.debug("Starting get_inputs function from ui.py")
     inputs = []
     print(title)
     for input_num in range(len(list_labels)):
@@ -85,8 +84,9 @@ def get_inputs(list_labels, title):
     return inputs
 
 def print_error_message(message):
-    log.logger.debug("ui error message written")
+    log.logger.debug("Starting print_error_message function from ui.py")
     print("ERROR:", message)
 
 def print_line(line):
+    log.logger.debug("Starting print_line function from ui.py")
     print(line)
