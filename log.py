@@ -1,6 +1,6 @@
 import logging
 
-#Create and configure logger
+#Create and configure log
 LOG_FORMAT = "%(levelname)s %(asctime)s - %(message)s"
 logging.basicConfig(filename = "job_hunter.log",
                     level = logging.DEBUG,
@@ -9,4 +9,3 @@ logging.basicConfig(filename = "job_hunter.log",
                     filemode="w")
 logger = logging.getLogger()
 
-#using: logger.info("text") / logger.debug("text") / logger.warning("text")
