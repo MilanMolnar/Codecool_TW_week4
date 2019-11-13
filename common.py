@@ -3,11 +3,9 @@ import random
 import log
 
 
-log.logger.info("Common module")
-
 
 def generate_random(table):
-    log.logger.debug("common generating random number")
+    log.logger.debug("Starting generate_random function from common.py")
     generated = ''
     upper_case = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P",
                   "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"]
@@ -40,8 +38,10 @@ def generate_random(table):
             continue
     return generated
 
+
+
 def add(table, input_list):
-    log.logger.debug("common adding to table")
+    log.logger.debug("Starting add function from common.py")
     list = []
     list.append(generate_random(table))
     for i in range(1, len(input_list)):
@@ -49,8 +49,10 @@ def add(table, input_list):
     table.append(list)
     return table
 
+
+
 def update(table, id_, new_list):
-    log.logger.debug("common update table")
+    log.logger.debug("Starting update function from common.py")
     for list in range(len(table)):
         for item in table[list]:
             if item in id_:
@@ -58,20 +60,26 @@ def update(table, id_, new_list):
                     table[list][i] = new_list[i]
     return table
 
+
+
 def remove(table, id_):
-    log.logger.debug("common remove table")
+    log.logger.debug("Starting remove function from common.py")
     for list in table:
         for item in list:
             if item in id_:
                 table.remove(list)
     return table
 
+
+
 def show_table(title_list, table):
-    log.logger.debug("common show table")
+    log.logger.debug("Starting show_table function from common.py")
     ui.print_table(table, title_list)
 
+    
+    
 def sorting(list):
-    log.logger.debug("common sorting...")
+    log.logger.debug("Starting sorting function from common.py")
     sorted = False
     while sorted == False:
         sorted = True
@@ -83,8 +91,10 @@ def sorting(list):
                 sorted = False
     return list
 
+
+
 def is_in_table(table, ID): #returns true/false
-    log.logger.debug("common is in table deciding")
+    log.logger.debug("Starting is_in_table function from common.py")
     for line in table:
         for item in line:
             if item in ID:
