@@ -7,13 +7,13 @@ from Position import position
 from Student import student
 
 
-log.logger.info("Main module")
+
 
 ui.print_line("Welcome to Job Hunter!")
 
 
 def choose():
-    log.logger.debug("main choosing menu")
+    log.logger.debug("Starting choose function from main.py")
     inputs = ui.get_inputs(["Please enter a number: "], "")
     option = inputs[0]
     if option == "1":
@@ -31,7 +31,7 @@ def choose():
 
 
 def handle_menu():
-    log.logger.debug("main menupoints")
+    log.logger.debug("Starting handle_menu function from main.py")
     options = ["Student",
                "Company",
                "Position",
@@ -41,7 +41,7 @@ def handle_menu():
 
 
 def main():
-    log.logger.debug("main menu starts")
+    log.logger.debug("Starting main function from main.py")
     while True:
         handle_menu()
         try:
