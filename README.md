@@ -8,23 +8,23 @@
 
 
 
-The main program is "main.py". 
+The main script is "main.py". 
 
 
 The program got 4 menus: Application, Company, Position, Student.
 
 
-"common.py" contains the usual functions we used.
+"common.py" contains frequently used functions.
 
 
-"data_manager" handles the files import/export.
+"data_manager" handles the file import/export.
 
 
-"log.py" logging the program to a log file in your folder, telling you the process.
+"log.py" logging the program to a .log file in your folder, detailing the process.
 
 
-"ui.py" contains the functions we use for printing out the staff.
+"ui.py" contains the functions used to visualize the program for the user.
 
 
-To see what the submenus should do, <a href="https://gofile.io/?c=zqZthM">click here!</a> (.doc file)
+To see what the submenus should do: <a href="https://gofile.io/?c=zqZthM">click here!</a> (.doc file)
 
