@@ -4,15 +4,17 @@ import data_manager
 import common
 import data_manager
 
-log.logger.info("Student module")
+
 def read_student(table, ID):
-    log.logger.debug("student reading student")
+    log.logger.debug("Starting read_student function from student.py")
     for i in range(len(table)):
         if table[i][0] in ID:
             ui.print_line(table[i])
 
+            
+            
 def change_status(table, ID_input):
-    log.logger.debug("student changing status")
+    log.logger.debug("Starting change_status function from student.py")
     for i in range(len(table)):
         if table[i][0] in ID_input:
             if table[i][-1] == '1':
@@ -21,8 +23,10 @@ def change_status(table, ID_input):
                 table[i][-1] = '1'
     return table
 
+
+
 def read_student(table, ID):
-    log.logger.debug("student read table")
+    log.logger.debug("Starting read_student function from student.py")
 
     file_app = data_manager.get_table_from_file("Application/application.csv")
 
@@ -41,8 +45,10 @@ def read_student(table, ID):
     else:
         ui.print_line("Applications: " + str(result))
 
+        
+        
 def remove_student(table, id_):
-    log.logger.debug("student remove student")
+    log.logger.debug("Starting remove_student function from student.py")
 
     file = data_manager.get_table_from_file("Application/application.csv")
     for sublist in file:
@@ -57,8 +63,10 @@ def remove_student(table, id_):
     ui.print_line("ID successfully deleted!")
     return table
 
+
+
 def start_module():
-    log.logger.debug("student starting module")
+    log.logger.debug("Starting start_module function from student.py")
     table = data_manager.get_table_from_file("Student/student.csv")
     log.logger.debug("student staring module")
     menu = True
@@ -69,8 +77,10 @@ def start_module():
         except KeyError as err:
             ui.print_error_message(str(err))
 
+            
+            
 def choose(menu):
-    log.logger.debug("student choosing option")
+    log.logger.debug("Starting choose function from student.py")
     file_name = "Student/student.csv"
     inputs = ui.get_inputs(["Please enter a number: "], "")
     option = inputs[0]
@@ -112,9 +122,8 @@ def choose(menu):
     return True
 
 
+
 def handle_menu():
-    log.logger.debug("student handling menu")
+    log.logger.debug("Starting handle_menu function from student.py")
     options = ["Create student", "Read student", "Read students", "Update student","Change status", "Delete student"]
-
-
     ui.print_menu("Student manager", options, "Back to main menu")
