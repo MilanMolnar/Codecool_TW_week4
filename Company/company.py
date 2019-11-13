@@ -2,9 +2,10 @@ import ui
 import log
 import common
 import data_manager
-log.logger.info("Company module")
+
+
 def start_module():
-    log.logger.debug("company starting module")
+    log.logger.debug("Starting start_module function from company.py")
     menu = True
     while menu:
         handle_menu()
@@ -13,9 +14,10 @@ def start_module():
         except KeyError as err:
             ui.print_error_message(str(err))
 
+            
+            
 def read_company(table, ID):
-    log.logger.debug("company read table")
-
+    log.logger.debug("Starting read_company function from company.py")
     file_pos = data_manager.get_table_from_file("Position/position.csv")
 
     for i in range(len(table)):
@@ -33,10 +35,11 @@ def read_company(table, ID):
         ui.print_line("Position: "+ str(result[0]))
     else:
         ui.print_line("Positions: "+ str(result))
-            
+      
+    
+    
 def remove_company(table, id_):
-    log.logger.debug("company remove comp")
-
+    log.logger.debug("Starting remove_company function from company.py")
     file = data_manager.get_table_from_file("Position/position.csv")
     for sublist in file:
         if sublist[-1] == id_[0]:
@@ -51,8 +54,9 @@ def remove_company(table, id_):
     return table
 
 
+
 def choose(menu):
-    log.logger.debug("company choosing option")
+    log.logger.debug("Starting choose function from company.py")
     file_name = "Company/company.csv"
     inputs = ui.get_inputs(["Please enter a number: "], "")
     option = inputs[0]
@@ -92,8 +96,8 @@ def choose(menu):
     return True
 
 
-def handle_menu():
-    log.logger.debug("company handling menu")
-    options = ["Create company", "Read company", "Read companies", "Update Company","Delete Company"]
 
+def handle_menu():
+    log.logger.debug("Starting handle_menu function from company.py")
+    options = ["Create company", "Read company", "Read companies", "Update Company","Delete Company"]
     ui.print_menu("Company manager", options, "Back to main menu")
