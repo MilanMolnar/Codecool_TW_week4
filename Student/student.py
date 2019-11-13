@@ -30,9 +30,16 @@ def read_student(table, ID):
         if table[i][0] in ID:
             ui.print_line("Student: " + str(table[i]))
 
+    result = []
     for i in range(len(file_app)):
         if file_app[i][2] == ID[0]:
-            ui.print_line("Application: " + str(file_app[i]))
+            result.append(file_app[i])
+    if len(result) == 0:
+        ui.print_line("No application for the student!")
+    elif len(result) == 1:
+        ui.print_line("Application: " + str(result[0]))
+    else:
+        ui.print_line("Applications: " + str(result))
 
 def remove_student(table, id_):
     log.logger.debug("student remove student")
@@ -41,6 +48,7 @@ def remove_student(table, id_):
     for sublist in file:
         if sublist[2] == id_[0]:
             ui.print_line('ID can not be deleted!')
+            raise ValueError
 
     for list in table:
         for item in list:
@@ -89,11 +97,14 @@ def choose(menu):
                       ui.get_inputs(["ID: "], "Please provide the ID to identify the student:"))
         data_manager.write_table_to_file(file_name, table)
     elif option == "6":
-        get_id = ["ID: "]
-        table = data_manager.get_table_from_file(file_name)
-        id_remove = ui.get_inputs(get_id, "Please provide the following information: ")
-        remove_student(table, id_remove)
-        data_manager.write_table_to_file(file_name, table)
+        try:
+            get_id = ["ID: "]
+            table = data_manager.get_table_from_file(file_name)
+            id_remove = ui.get_inputs(get_id, "Please provide the following information: ")
+            remove_student(table, id_remove)
+            data_manager.write_table_to_file(file_name, table)
+        except ValueError:
+            start_module()
     elif option == "0":
         return False
     else:
